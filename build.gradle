@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+
+group 'TestDINS'
+version '1.0-SNAPSHOT'
+
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+ext {
+    restAssuredVer = "4.3.3"
+     allureVersion = '2.9.0'
+     junitVersion = '5.1.0'
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    compile("io.rest-assured:scala-support:$restAssuredVer")
+    compile group: 'net.serenity-bdd', name: 'serenity-gradle-plugin', version: '2.3.12'
+    compile group: 'ru.yandex.qatools.allure', name: 'allure-report-plugin-api', version: '1.5.4'
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+    testCompile('org.assertj:assertj-core:3.11.1')
+
+    testRuntimeOnly("io.qameta.allure:allure-junit5:$allureVersion")
+    testCompile("io.qameta.allure:allure-java-commons:$allureVersion")
+    testCompile("io.qameta.allure:allure-attachments:$allureVersion")
+    testCompile("io.qameta.allure:allure-generator:$allureVersion")
+    testCompile("io.qameta.allure:allure-httpclient:$allureVersion")
+}
+test {
+    useJUnitPlatform()
+}
